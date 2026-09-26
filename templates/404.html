@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found (404) | {{ BUSINESS_NAME }}{% endblock title %}
+
+{% block content %}
+<section class="error-page-section">
+    <div class="error-container">
+        <span class="error-badge">🌿 404 ERROR</span>
+        <h1 class="error-code">Page Not Found</h1>
+        <p class="error-message">
+            Oops! The mehndi page or design you are looking for might have been moved or is no longer available.
+        </p>
+        <div class="error-actions">
+            <a href="{% url 'henna:home' %}" class="btn btn-primary">Return to Home</a>
+            <a href="{% url 'henna:gallery' %}" class="btn btn-secondary">Explore Henna Designs</a>
+            <a href="https://wa.me/{{ WHATSAPP_PHONE_NUMBER }}" target="_blank" class="btn btn-wa-outline">Need Help on WhatsApp</a>
+        </div>
+    </div>
+</section>
+{% endblock content %}
