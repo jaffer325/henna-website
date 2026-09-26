@@ -570,6 +570,16 @@ button { font-family: inherit; cursor: pointer; }
 /* --------------------------------------------------------------------------
    QUANTITY CONTROLS
    -------------------------------------------------------------------------- */
+/* Hide native spinner arrows */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .qty-control {
   display: inline-flex;
   align-items: center;
@@ -580,11 +590,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .qty-btn, .design-qty-btn {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   background: var(--clr-primary-light);
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--clr-primary);
   cursor: pointer;
@@ -593,19 +603,22 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: center;
   transition: all var(--dur-fast) ease;
   flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .qty-btn:hover, .design-qty-btn:hover { background: var(--clr-primary); color: #fff; }
 .qty-btn:active, .design-qty-btn:active { transform: scale(0.9); }
 
 .qty-input, .design-qty-input {
-  width: 48px;
-  height: 40px;
+  width: 44px;
+  height: 38px;
   border: none;
   text-align: center;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--clr-text-main);
   background: #fff;
+  padding: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -1025,18 +1038,70 @@ button { font-family: inherit; cursor: pointer; }
 }
 .price-val.custom-quote { font-size: 0.95rem; color: var(--clr-accent-dark); }
 
-.card-action-box { display: flex; flex-direction: column; gap: 10px; }
+.card-action-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
 
 .qty-selector-wrap {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 5px;
   background: var(--clr-bg);
-  padding: 7px 10px;
+  padding: 6px 8px;
   border-radius: var(--r-sm);
   border: 1px solid var(--clr-border);
 }
-.qty-label { font-size: 0.78rem; font-weight: 600; color: var(--clr-text-muted); }
+.qty-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--clr-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.2;
+}
+.qty-selector-wrap .qty-control {
+  display: flex;
+  width: 100%;
+  height: 34px;
+  border: 1.5px solid var(--clr-border);
+  background: #fff;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.qty-selector-wrap .design-qty-btn {
+  width: 36px;
+  height: 100%;
+  flex-shrink: 0;
+  background: var(--clr-primary-light);
+  border: none;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--dur-fast) ease;
+}
+.qty-selector-wrap .design-qty-btn:hover { background: var(--clr-primary); color: #fff; }
+.qty-selector-wrap .design-qty-btn:active { transform: scale(0.9); }
+.qty-selector-wrap .design-qty-input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--clr-text-main);
+  background: #fff;
+  padding: 0;
+}
 
 /* --------------------------------------------------------------------------
    LIGHTBOX
@@ -1289,7 +1354,12 @@ button { font-family: inherit; cursor: pointer; }
 .price-container .price-figure { font-family: var(--ff-heading); font-size: 1.8rem; font-weight: 700; color: var(--clr-primary); }
 .price-container .unit-sub { font-size: 0.82rem; color: var(--clr-text-light); margin-left: 4px; }
 
-.product-order-box { display: flex; flex-direction: column; gap: 12px; }
+.product-order-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
 
 .qty-calc-row {
   display: flex;
@@ -1952,17 +2022,59 @@ button { font-family: inherit; cursor: pointer; }
     border-radius: var(--r-md);
   }
   .design-body, .product-body {
-    padding: 14px 12px;
+    padding: 12px 10px;
   }
   .design-title, .product-title {
-    font-size: 0.95rem !important;
+    font-size: 0.92rem !important;
   }
   .design-desc, .product-desc {
-    font-size: 0.78rem !important;
-    line-height: 1.45;
+    font-size: 0.76rem !important;
+    line-height: 1.4;
+    margin-bottom: 8px;
   }
   .price-val {
-    font-size: 1.12rem !important;
+    font-size: 1.05rem !important;
+  }
+  .card-price-row {
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+  }
+
+  /* Quantity and action box on mobile */
+  .card-action-box {
+    gap: 6px;
+  }
+  .qty-selector-wrap {
+    padding: 5px 6px;
+    gap: 4px;
+  }
+  .qty-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3px;
+  }
+  .qty-selector-wrap .qty-control {
+    height: 32px;
+  }
+  .qty-selector-wrap .design-qty-btn {
+    width: 32px;
+    font-size: 1.05rem;
+  }
+  .qty-selector-wrap .design-qty-input {
+    font-size: 0.88rem;
+  }
+  .btn-order-product,
+  .btn-order-design {
+    min-height: 38px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    gap: 5px;
+    border-radius: var(--r-sm);
+  }
+  .btn-order-product svg,
+  .btn-order-design svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
   }
 
   /* Buttons on mobile */
@@ -1992,10 +2104,15 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 374px) {
   .brand-title { font-size: 0.95rem; }
   .hero-title { font-size: 1.4rem !important; }
-  .gallery-grid { gap: 10px; }
-  .design-body { padding: 10px; }
-  .product-body { padding: 12px 10px; }
-  .btn { padding: 10px 16px; font-size: 0.82rem; }
+  .gallery-grid { gap: 8px; }
+  .design-body { padding: 8px 6px; }
+  .product-body { padding: 10px 8px; }
+  .qty-selector-wrap { padding: 4px; }
+  .qty-selector-wrap .qty-control { height: 28px; }
+  .qty-selector-wrap .design-qty-btn { width: 28px; font-size: 0.95rem; }
+  .qty-selector-wrap .design-qty-input { font-size: 0.82rem; }
+  .btn-order-design { padding: 7px 6px; font-size: 0.74rem; min-height: 34px; }
+  .btn { padding: 10px 14px; font-size: 0.8rem; }
   .bottom-bar-btn { font-size: 0.52rem; }
 }
 
