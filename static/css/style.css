@@ -1036,6 +1036,12 @@ input[type=number] {
   font-weight: 700;
   color: var(--clr-primary);
 }
+.gallery-section .price-val { color: var(--clr-primary-dark); }
+.price-currency {
+  font-family: var(--ff-body);
+  font-size: 0.8em;
+  font-weight: 700;
+}
 .price-val.custom-quote { font-size: 0.95rem; color: var(--clr-accent-dark); }
 
 .card-action-box {

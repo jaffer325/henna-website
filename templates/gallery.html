@@ -57,7 +57,7 @@
                         {% if design.price %}
                         <div class="price-box">
                             <span class="price-label">Starting at</span>
-                            <span class="price-val">₹{{ design.price|floatformat:0 }}</span>
+                            <span class="price-val"><span class="price-currency">Rs.</span> {{ design.price|floatformat:0 }}</span>
                         </div>
                         {% else %}
                         <div class="price-box">
